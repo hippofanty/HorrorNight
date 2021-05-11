@@ -1,0 +1,26 @@
+<section class="hero is-medium main-hero">
+  <div class="hero-head"></div>
+    <div class="hero-body main-back">
+      <div class="container has-text-left">
+        {{!-- <img src="https://cdn.emk.dev/templates/bulma-logo-light.png" width="150" height="40"> --}}
+        <h2 class="subtitle is-size-3 has-text-white-light hero-quote">
+          Track films you’ve watched.<br>
+          Save those you want to see.<br>
+          Tell your friends what’s good.
+        </h2>
+      </div>
+    </div>
+  </section>
+
+<div class="container">
+  <div class="section">
+    <div class="columns is-desktop is-flex-wrap-wrap">
+      {{#each result.results}}
+        <div class="column is-one-quarter">
+          <h6 class="title is-6">{{this.title}}</h6>
+          <a href="/films/{{this.id}}"><img src="https://www.themoviedb.org/t/p/w220_and_h330_face/{{this.poster_path}}"></a>
+        </div>
+        {{/each}}
+    </div>
+  </div>
+</div>

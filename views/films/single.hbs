@@ -1,0 +1,33 @@
+<section class="hero is-info single-hero" style="background: url(https://www.themoviedb.org/t/p/w1920_and_h800_multi_faces/{{result.backdrop_path}}); background-position: right -200px top; background-size: cover;">
+  <div class="hero-body single-back">
+    <div class="container">
+      <div class="columns is-align-items-center">
+        <div class="column is-narrow is-flex is-justify-content-center" style="width: 400px;">
+          <img class="poster is-justify-content-center" style="border-radius: 10px;" src="https://www.themoviedb.org/t/p/w300_and_h450_bestv2/{{result.poster_path}}">
+        </div>
+        <div class="column is-flex-wrap-wrap">
+          <div class="is-flex-wrap-wrap">
+            <p class="title is-3">{{result.title}} <span class="release_date has-text-weight-normal">({{releaseDate}})</span></p>
+            <div class="facts subtitle is-6">
+              <span>{{replacedDate}}</span>
+              <span>{{showGenres}}</span>
+              <span>{{duration}}</span>
+            </div>
+          </div>
+
+          <button class="hero-btn button is-danger is-outlined">{{result.vote_average}}</button>
+          <button class="hero-btn button is-danger is-outlined"><a href="{{result.homepage}}">Homepage</a></button>
+
+          <div class="hero-info">
+            <h6 class="title is-5">Обзор</h6>
+            {{#if result.overview}}
+            <p class="subtitle is-6">{{result.overview}}</p>
+            {{else}}
+            <p class="subtitle is-6">Временно отсутствует</p>
+            {{/if}}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

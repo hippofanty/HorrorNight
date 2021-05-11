@@ -1,0 +1,35 @@
+.main-hero {
+  background-color: black;
+  height: 500px;
+}
+
+.single-hero {
+  font-family: 'Source Sans Pro', Arial, sans-serif;
+}
+
+.main-back {
+  background: url(http://fullhdwallpapers.ru/image/movies/9708/pila.jpg) no-repeat center fixed;
+}
+
+.single-back {
+  background-image: linear-gradient(to right, rgba(9.41%, 9.41%, 9.02%, 1.00) 150px, rgba(9.41%, 9.41%, 9.02%, 0.84) 100%);
+}
+
+.nav-logo {
+  width: 65px;
+  height: 55px;
+  margin-top: 5px;
+}
+
+.hero-quote {
+  color: #959292;
+}
+
+.release_date {
+  opacity: 0.8;
+}
+
+.hero-btn {
+  height: 30px;
+  margin: 21px 0;
+}
