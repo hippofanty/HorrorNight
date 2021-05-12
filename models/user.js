@@ -19,6 +19,12 @@ const userSchema = mongoose.Schema({
     unique: true,
     match: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
   },
+  trackedFilms: [
+    {
+      type: String,
+      unique: true,
+    },
+  ],
 });
 
 module.exports = mongoose.model('User', userSchema);

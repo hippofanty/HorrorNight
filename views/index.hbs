@@ -17,7 +17,7 @@
     <div class="columns is-desktop is-flex-wrap-wrap">
       {{#each result.results}}
         <div class="column is-one-quarter">
-          <h6 class="title is-6">{{this.title}}</h6>
+          <h6 class="title is-6"><a href="/films/{{this.id}}">{{this.title}}</a></h6>
           <a href="/films/{{this.id}}"><img src="https://www.themoviedb.org/t/p/w220_and_h330_face/{{this.poster_path}}"></a>
         </div>
         {{/each}}

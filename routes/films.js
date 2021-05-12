@@ -1,5 +1,6 @@
 const express = require('express');
 const fetch = require('node-fetch');
+const User = require('../models/user');
 
 const router = express.Router();
 
@@ -22,8 +23,11 @@ router
   .route('/:id')
   .get(async (req, res) => {
     const { id } = req.params;
-    const response = await fetch(`https://api.themoviedb.org/3/movie/${id}?api_key=${process.env.API_KEY}&language=ru`);
+    const response = await fetch(`https://api.themoviedb.org/3/movie/${id}?api_key=${process.env.API_KEY}&append_to_response=videos&language=ru`);
+    const resVideo = await fetch(`https://api.themoviedb.org/3/movie/${id}/videos?api_key=${process.env.API_KEY}&language=en-US`);
     const result = await response.json();
+    const videoResult = await resVideo.json();
+
     const releaseDate = result.release_date.slice(0, 4);
     const replacedDate = result.release_date.replace(/\-/ig, '/');
     const duration = getTimeFromMins(result.runtime);
@@ -32,15 +36,31 @@ router
     const genres = result.genres.forEach((el) => allGenres.push(el.name));
     const showGenres = allGenres.join(', ');
 
-    // console.log(result);
-    console.log(result.homepage);
+    const getVideo = videoResult.results[0];
+
     res.render('films/single', {
       result,
       releaseDate,
       showGenres,
       replacedDate,
       duration,
+      getVideo,
+      isModal: true,
+      isTrack: true,
     });
+  })
+  .post(async (req, res) => {
+    const { id } = req.body;
+    console.log(id);
+    try {
+      const user = await User.findByIdAndUpdate(
+        req.session.user.id,
+        { $push: { trackedFilms: id } },
+      );
+      return res.sendStatus(200);
+    } catch (error) {
+      return res.sendStatus(500);
+    }
   });
 
 module.exports = router;

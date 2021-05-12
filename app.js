@@ -13,6 +13,7 @@ require('dotenv').config();
 const indexRouter = require('./routes/index');
 const authRouter = require('./routes/auth');
 const filmsRouter = require('./routes/films');
+const searchRouter = require('./routes/search');
 
 // Создаем объект приложения
 const app = express();
@@ -62,6 +63,7 @@ app.use(cookiesCleaner);
 app.use('/', indexRouter);
 app.use('/', authRouter);
 app.use('/films', filmsRouter);
+app.use('/search', searchRouter);
 
 app.use((req, res, next) => {
   const error = createError(404, 'Запрашиваемой страницы не существует на сервере.');

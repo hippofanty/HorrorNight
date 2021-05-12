@@ -14,6 +14,12 @@
   {{#if isSignin}}
   <script defer src="/js/signin.js"></script>
   {{/if}}
+  {{#if isModal}}
+  <script defer src="/js/modal.js"></script>
+  {{/if}}
+  {{#if isTrack}}
+  <script defer src="/js/trackFilm.js"></script>
+  {{/if}}
 
 </head>
 <body>
@@ -60,6 +66,19 @@
           </div>
         </div>
       </div>
+
+      <form class="is-flex is-align-content-center" id="searchForm" action="/search">
+        <div class="navbar-item">
+          <div class="field has-addons">
+            <div class="control">
+              <input name="film" class="input" type="text" placeholder="Найти фильм">
+            </div>
+            <div class="control">
+              <button class="button" type="submit">Поиск</button>
+            </div>
+          </div>
+        </div>
+      </form>
 
       <div class="navbar-end">
         <div class="navbar-item">

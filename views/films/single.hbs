@@ -2,12 +2,13 @@
   <div class="hero-body single-back">
     <div class="container">
       <div class="columns is-align-items-center">
-        <div class="column is-narrow is-flex is-justify-content-center" style="width: 400px;">
+        <div class="column is-narrow is-flex is-justify-content-center image-cont" style="width: 400px; position: relative;">
           <img class="poster is-justify-content-center" style="border-radius: 10px;" src="https://www.themoviedb.org/t/p/w300_and_h450_bestv2/{{result.poster_path}}">
+          <button class="hero-btn button is-danger is-outlined hidden-btn" type="submit">Отслеживать</button>
         </div>
         <div class="column is-flex-wrap-wrap">
           <div class="is-flex-wrap-wrap">
-            <p class="title is-3">{{result.title}} <span class="release_date has-text-weight-normal">({{releaseDate}})</span></p>
+            <a class="single-link" href="/films/{{result.id}}"><p class="title is-3">{{result.title}}</a> <span class="release_date has-text-weight-normal">({{releaseDate}})</span></p>
             <div class="facts subtitle is-6">
               <span>{{replacedDate}}</span>
               <span>{{showGenres}}</span>
@@ -15,8 +16,9 @@
             </div>
           </div>
 
-          <button class="hero-btn button is-danger is-outlined">{{result.vote_average}}</button>
-          <button class="hero-btn button is-danger is-outlined"><a href="{{result.homepage}}">Homepage</a></button>
+          <button class="hero-btn button is-danger is-outlined" title="Рейтинг">{{result.vote_average}}</button>
+          <button class="hero-btn button is-danger is-outlined" title="Домашняя страница"><a href="{{result.homepage}}">Homepage</a></button>
+          <button id="{{getVideo.key}}" class="hero-btn button is-danger is-outlined watch-btn" title="Смотреть трейлер">Watch trailer</button>
 
           <div class="hero-info">
             <h6 class="title is-5">Обзор</h6>
@@ -31,3 +33,11 @@
     </div>
   </div>
 </section>
+
+<div class="modal">
+  <div class="modal-background"></div>
+  <div class="modal-content">
+    <iframe width="960" height="540" src="https://www.youtube.com/embed/{{getVideo.key}}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+  </div>
+  <button class="modal-close is-large" aria-label="close"></button>
+</div>

@@ -1,0 +1,30 @@
+<div class="container is-flex is-flex-direction-row is-flex-wrap-wrap is-justify-content-center">
+{{#each result.results}}
+<div class="column is-three-quarters">
+  <div class="card searched-cards is-flex is-flex-direction-row">
+    {{#if this.poster_path}}
+    <img class="searched-img" src="https://www.themoviedb.org/t/p/w94_and_h141_bestv2/{{this.poster_path}}">
+    {{else}}
+    <div class="no-image"></div>
+    {{/if}}
+    <div class="card-content is-flex is-align-content-center is-flex-direction-row is-flex-wrap-wrap">
+      <div class="content">
+        <div class="card-wrapper">
+          <p class="title is-5"><a href="/films/{{this.id}}">{{this.title}}</a></p>
+          <p class="release_date searched-date">{{this.release_date}}</p>
+        </div>
+      </div>
+      <div class="content">
+        <div class="overview">
+          {{#if this.overview}}
+          <p class="card-overview">{{this.overview}}</p>
+          {{else}}
+          <p class="card-overview">Фильм находится в разработке</p>
+          {{/if}}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{{/each}}
+</div>
