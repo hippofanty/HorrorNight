@@ -6,6 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>HorrorNight</title>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.2/css/bulma.min.css">
+  <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
   <link rel="stylesheet" href="/css/style.css">
 
   {{#if isSignup}}
@@ -20,17 +21,22 @@
   {{#if isTrack}}
   <script defer src="/js/trackFilm.js"></script>
   {{/if}}
+  {{#if isProfile}}
+  <script defer src="/js/profile.js"></script>
+  {{/if}}
+
+  <script defer src="/js/application.js"></script>
 
 </head>
 <body>
   <div class="container">
-  <nav class="navbar" role="navigation" aria-label="main navigation">
+  <nav class="navbar " role="navigation" aria-label="main navigation">
     <div class="navbar-brand">
       <a href="/">
         <img class="nav-logo" src="/img/mask.png">
       </a>
 
-      <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+      <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
         <span aria-hidden="true"></span>
         <span aria-hidden="true"></span>
         <span aria-hidden="true"></span>
@@ -41,10 +47,6 @@
       <div class="navbar-start">
         <a class="navbar-item">
           Фильмы
-        </a>
-
-        <a class="navbar-item">
-          Сериалы
         </a>
 
         <div class="navbar-item has-dropdown is-hoverable">
@@ -79,12 +81,13 @@
           </div>
         </div>
       </form>
+      <div class="pageloader"><span class="title"></span></div>
 
       <div class="navbar-end">
         <div class="navbar-item">
           <div class="buttons">
             {{#if username}}
-            <a class="button is-white">
+            <a class="button is-white" href="/profile/watchlist">
               Hello, {{username}}!
             </a>
             <a class="button is-danger is-light is-rounded" href="/logout">

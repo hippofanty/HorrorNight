@@ -31,7 +31,7 @@
 
 .hero-btn {
   height: 30px;
-  margin: 21px 0;
+  margin: 21px 2px 2px 0;
 }
 
 .searched-cards {
@@ -90,4 +90,101 @@ a {
 .image-cont:hover .hidden-btn {
   opacity: 1;
   transition: opacity .3s;
+}
+
+.profile-card {
+  height: 202px;
+}
+
+.menu-list a.is-active {
+  background-color: transparent;
+  color: #d33838;
+  font-weight: 700;
+}
+
+.buttons-col {
+  max-width: 298px;
+  margin-bottom: 21px;
+}
+
+.is-added-btn {
+  width: 271px;
+}
+
+#commentForm {
+  width: -webkit-fill-available;
+}
+
+.rating-group {
+  display: inline-flex;
+  width: 270px;
+  padding-top: 3px;
+  align-items: center;
+  justify-content: center;
+}
+
+.rating__icon {
+  pointer-events: none;
+}
+
+.rating__input {
+  position: absolute !important;
+  left: -9999px !important;
+}
+
+.rating__label {
+  color: #444;
+  cursor: pointer;
+  padding: 0 0.5em;
+  font-size: 1.5rem;
+}
+
+.rating__label--half {
+  width: 16px;
+  padding-right: 0;
+  margin-right: -0.7em;
+  z-index: 2;
+}
+
+.rating__icon--star {
+  color: #fd4;
+}
+
+.rating__icon--none {
+  color: #eee;
+}
+
+.rating__input:checked ~ .rating__label .rating__icon--star {
+  color: #444;
+}
+
+.rating-group:hover .rating__label .rating__icon--star,
+.rating-group:hover .rating__label--half .rating__icon--star {
+  color: #fd4;
+  transition: all 0.4s ease;
+}
+
+.rating__input:hover ~ .rating__label .rating__icon--star,
+.rating__input:hover ~ .rating__label--half .rating__icon--star {
+  color: #444;
+}
+
+.rating-group:hover .rating__input--none:not(:hover) + .rating__label .rating__icon--none {
+    color: #eee;
+}
+
+.hidden-checker {
+  padding: 0;
+}
+
+.show-tooltip {
+  width: 184px;
+  bottom: 790px;
+  height: 80px;
+  padding: 5px;
+  position: absolute;
+  background-color: #f14668;
+  border-radius: 15px;
+  left: 1710px;
+  text-align: center;
 }

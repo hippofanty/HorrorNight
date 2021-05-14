@@ -1,6 +1,8 @@
 const express = require('express');
 const fetch = require('node-fetch');
 const User = require('../models/user');
+const Comment = require('../models/comments');
+const Rating = require('../models/ratings');
 
 const router = express.Router();
 
@@ -27,6 +29,19 @@ router
     const resVideo = await fetch(`https://api.themoviedb.org/3/movie/${id}/videos?api_key=${process.env.API_KEY}&language=en-US`);
     const result = await response.json();
     const videoResult = await resVideo.json();
+    // console.log(result);
+
+    const getRatings = await Rating.find().populate('user');
+    const ratingByFilm = getRatings.filter((el) => el.film?.includes(id));
+    const ratingObj = ratingByFilm[0];
+    console.log(ratingObj);
+
+    const getUser = await User.findById(req.session.user?.id);
+    const isAdded = getUser?.trackedFilms.some((el) => el === id);
+
+    const getAllComments = await Comment.find().populate('author');
+    const commentsByFilm = getAllComments.filter((el) => el.filmId?.includes(id));
+    // console.log(commentsByFilm);
 
     const releaseDate = result.release_date.slice(0, 4);
     const replacedDate = result.release_date.replace(/\-/ig, '/');
@@ -45,6 +60,9 @@ router
       replacedDate,
       duration,
       getVideo,
+      commentsByFilm,
+      isAdded,
+      ratingObj,
       isModal: true,
       isTrack: true,
     });
@@ -60,6 +78,69 @@ router
       return res.sendStatus(200);
     } catch (error) {
       return res.sendStatus(500);
+    }
+  })
+  .delete(async (req, res) => {
+    const { id } = req.body;
+    try {
+      const user = await User.findById(req.session.user.id);
+      const filmIndex = user.trackedFilms.indexOf(id);
+      user.trackedFilms.splice(filmIndex, 1);
+      await user.save();
+
+      return res.sendStatus(200);
+    } catch (error) {
+      return res.sendStatus(501);
+    }
+  });
+
+router
+  .route('/:id/ratings')
+  .post(async (req, res) => {
+    const { rate, id } = req.body;
+    // console.log(req.body);
+
+    try {
+      const rating = await Rating.create(
+        {
+          user: req.session.user.id,
+          film: id,
+          rate,
+        },
+      );
+      return res.sendStatus(200);
+    } catch (error) {
+      return res.sendStatus(501);
+    }
+  })
+  .put(async (req, res) => {
+    const { rate, id } = req.body;
+    console.log(req.body);
+
+    try {
+      const updRating = await Rating.findOneAndUpdate({ film: id }, { rate: rate });
+      return res.sendStatus(200);
+    } catch (error) {
+      return res.sendStatus(501);
+    }
+  });
+
+router
+  .route('/comment/:id')
+  .post(async (req, res) => {
+    const { content, id } = req.body;
+
+    try {
+      const comment = await Comment.create(
+        {
+          author: req.session.user.id,
+          content,
+          filmId: id,
+        },
+      );
+      res.sendStatus(200);
+    } catch (error) {
+      res.sendStatus(501);
     }
   });
 

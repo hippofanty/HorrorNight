@@ -14,6 +14,7 @@ const indexRouter = require('./routes/index');
 const authRouter = require('./routes/auth');
 const filmsRouter = require('./routes/films');
 const searchRouter = require('./routes/search');
+const profileRouter = require('./routes/profile');
 
 // Создаем объект приложения
 const app = express();
@@ -45,7 +46,7 @@ app.use(
     resave: false,
     saveUninitialized: false,
     cookie: {
-      expires: 600000,
+      maxAge: 3600000,
     },
   }),
 );
@@ -64,6 +65,8 @@ app.use('/', indexRouter);
 app.use('/', authRouter);
 app.use('/films', filmsRouter);
 app.use('/search', searchRouter);
+app.use('/profile', profileRouter);
+
 
 app.use((req, res, next) => {
   const error = createError(404, 'Запрашиваемой страницы не существует на сервере.');

@@ -1,5 +1,5 @@
 <div class="container is-flex is-flex-direction-row is-flex-wrap-wrap is-justify-content-center">
-{{#each result.results}}
+{{#each movieIds}}
 <div class="column is-three-quarters">
   <div class="card searched-cards is-flex is-flex-direction-row">
     {{#if this.poster_path}}
@@ -19,7 +19,7 @@
           {{#if this.overview}}
           <p class="card-overview">{{this.overview}}</p>
           {{else}}
-          <p class="card-overview">Фильм находится в разработке</p>
+          <p class="card-overview">Описание отсутствует</p>
           {{/if}}
         </div>
       </div>
