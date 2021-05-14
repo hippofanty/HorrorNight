@@ -12,6 +12,7 @@ function serializeUser(user) {
   return {
     id: user.id,
     username: user.username,
+    firstLetter: user.username.slice(0, 1),
   };
 }
 
@@ -31,6 +32,7 @@ router
       req.session.user = serializeUser(user);
       return res.sendStatus(200);
     } catch (error) {
+      console.log(error);
       return failAuth(res);
     }
   });
@@ -53,6 +55,7 @@ router
       req.session.user = serializeUser(user);
       return res.sendStatus(200);
     } catch (error) {
+      console.log(error);
       return failAuth(res);
     }
   });

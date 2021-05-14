@@ -2,18 +2,16 @@
 <div class="container">
   <div class="columns">
     <div class="column is-2">
-      {{!-- <p class="menu-label">Tracker</p> --}}
       <ul class="menu-list">
-        <li><a class="is-active" href="/profile/watchlist">Watchlist</a></li>
-        <li><a href="/profile/ratings">Ratings</a></li>
-        <li><a>Other</a></li>
+        <li><a href="/profile/">Профиль</a></li>
+        <li><a class="is-active" href="/profile/watchlist">Список отслеживания</a></li>
+        <li><a href="/profile/ratings">Рейтинги</a></li>
       </ul>
     </div>
 
-    <div class="column is-10">
-      <h1>Список просмотренных фильмов</h1>
-      {{!-- {{#each trackedFilms}}
-      <div class="column is-full">
+<div class="column is-10 wl-box">
+      {{#each ratedFilms}}
+      <div class="column is-full wl-column">
         <div class="card searched-cards profile-card is-flex is-flex-direction-row">
           {{#if this.poster_path}}
             <img class="searched-img" src="https://www.themoviedb.org/t/p/w150_and_h225_bestv2/{{this.poster_path}}">
@@ -34,11 +32,11 @@
                 {{else}}
                 <p class="card-overview">Описание отсутствует</p>
                 {{/if}}
-                <button class="button is-danger is-outlined"><a href="">Homepage</a></button>
-                <button class="button is-danger is-outlined del-btn">
-                  <span>Delete</span>
-                  <span class="icon is-small">
-                    <i class="fas fa-times"></i>
+                <button class="button is-white"><a class="has-text-weight-bold" style="color: red" href="">{{this.myRating}}</a></button>
+                <button class="button is-white del-btn">
+                  <span class="del-btn">Удалить</span>
+                  <span class="icon is-small del-btn">
+                    <i class="fas fa-times del-btn"></i>
                   </span>
                 </button>
               </div>
@@ -46,8 +44,7 @@
           </div>
         </div>
       </div>
-      {{/each}} --}}
+      {{/each}}
     </div>
-
   </div> 
 </div>

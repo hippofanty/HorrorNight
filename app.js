@@ -55,6 +55,7 @@ app.use((req, res, next) => {
   if (req.session.user) {
     res.locals.username = req.session.user?.username;
     res.locals.id = req.session.user?.id;
+    res.locals.firstLetter = req.session.user?.firstLetter;
   }
   next();
 });
@@ -66,7 +67,6 @@ app.use('/', authRouter);
 app.use('/films', filmsRouter);
 app.use('/search', searchRouter);
 app.use('/profile', profileRouter);
-
 
 app.use((req, res, next) => {
   const error = createError(404, 'Запрашиваемой страницы не существует на сервере.');

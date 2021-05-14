@@ -24,95 +24,117 @@
   {{#if isProfile}}
   <script defer src="/js/profile.js"></script>
   {{/if}}
+  {{#if isInfo}}
+  <script defer src="/js/infoProfile.js"></script>
+  {{/if}}
+  {{#if isDel}}
+  <script defer src="/js/delRating.js"></script>
+  {{/if}}
 
   <script defer src="/js/application.js"></script>
 
 </head>
 <body>
   <div class="container">
-  <nav class="navbar " role="navigation" aria-label="main navigation">
-    <div class="navbar-brand">
-      <a href="/">
-        <img class="nav-logo" src="/img/mask.png">
-      </a>
-
-      <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
-        <span aria-hidden="true"></span>
-        <span aria-hidden="true"></span>
-        <span aria-hidden="true"></span>
-      </a>
-    </div>
-
-    <div id="navbarBasicExample" class="navbar-menu">
-      <div class="navbar-start">
-        <a class="navbar-item">
-          Фильмы
+    <nav class="navbar " role="navigation" aria-label="main navigation">
+      <div class="navbar-brand">
+        <a href="/">
+          <img class="nav-logo" src="/img/mask.png">
         </a>
 
-        <div class="navbar-item has-dropdown is-hoverable">
-          <a class="navbar-link">
-            Больше
+        <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+        </a>
+      </div>
+
+      <div id="navbarBasicExample" class="navbar-menu">
+        <div class="navbar-start">
+          <a class="navbar-item" href="/">
+            Фильмы
           </a>
 
-          <div class="navbar-dropdown">
-            <a class="navbar-item">
-              О нас
+          <div class="navbar-item has-dropdown is-hoverable">
+            <a class="navbar-link">
+              Больше
             </a>
-            <a class="navbar-item">
-              Контакты
-            </a>
-            <hr class="navbar-divider">
-            <a class="navbar-item">
-              Сообщить об ошибке
-            </a>
-          </div>
-        </div>
-      </div>
 
-      <form class="is-flex is-align-content-center" id="searchForm" action="/search">
-        <div class="navbar-item">
-          <div class="field has-addons">
-            <div class="control">
-              <input name="film" class="input" type="text" placeholder="Найти фильм">
-            </div>
-            <div class="control">
-              <button class="button" type="submit">Поиск</button>
+            <div class="navbar-dropdown">
+              <a class="navbar-item">
+                О нас
+              </a>
+              <a class="navbar-item">
+                Контакты
+              </a>
+              <hr class="navbar-divider">
+              <a class="navbar-item">
+                Сообщить об ошибке
+              </a>
             </div>
           </div>
         </div>
-      </form>
-      <div class="pageloader"><span class="title"></span></div>
 
-      <div class="navbar-end">
-        <div class="navbar-item">
-          <div class="buttons">
-            {{#if username}}
-            <a class="button is-white" href="/profile/watchlist">
-              Hello, {{username}}!
+        <form class="is-flex is-align-content-center" id="searchForm" action="/search">
+          <div class="navbar-item">
+            <div class="field has-addons">
+              <div class="control">
+                <input name="film" class="input" type="text" placeholder="Найти фильм">
+              </div>
+              <div class="control">
+                <button class="button" type="submit">Поиск</button>
+              </div>
+            </div>
+          </div>
+        </form>
+        <div class="pageloader"><span class="title"></span></div>
+
+        <div class="navbar-end">
+          {{#if username}}
+          <div class="navbar-item has-dropdown is-hoverable">
+            <a class="navbar-link">
+              <span class="icon profile-mini">
+                <i class="fas fa-circle fa-3x name-logo"></i>
+                <div class="name-letter">{{firstLetter}}</div>
+              </span>
             </a>
-            <a class="button is-danger is-light is-rounded" href="/logout">
-              Log out
-            </a>
-            {{else}}
-            <a class="button is-danger is-rounded" href="/signup">
-              <strong>Sign up</strong>
-            </a>
-            <a class="button is-danger is-light is-rounded" href="/signin">
-              Log in
-            </a>
-            {{/if}}
+            
+            <div class="navbar-dropdown">
+              <a class="navbar-item is-flex is-flex-wrap-wrap" href="/profile">
+                <p class="title is-6 has-text-left">{{username}}</p>
+                <span class="subtitle is-6">Смотреть профиль</span>
+              </a>
+              <hr class="navbar-divider">
+              <a class="navbar-item" href="/profile/ratings">
+                Рейтинги
+              </a>
+              <a class="navbar-item" href="/profile/watchlist">
+                Список отслеживания
+              </a>
+              <hr class="navbar-divider">
+              <a class="navbar-item" href="/logout">
+                Выйти
+              </a>
+            </div>
+          </div>
+          {{else}}
+          <div class="navbar-item">
+            <div class="buttons">
+              <a class="button is-danger is-rounded" href="/signup">
+                <strong>Sign up</strong>
+              </a>
+              <a class="button is-danger is-light is-rounded" href="/signin">
+                Log in
+              </a>
+          {{/if}}
+            </div>
           </div>
         </div>
       </div>
-    </div>
-  </nav>
+    </nav>
   </div>
 
-  {{!-- <div class="container"> --}}
-
   {{{body}}}
-
-  {{!-- </div> --}}
 
 </body>
 </html>

@@ -46,8 +46,35 @@ document.forms.commentForm?.addEventListener('submit', async (event) => {
     }),
   });
 
+  const result = await response.json();
+
   if (response.status === 200) {
     text.value = '';
+    const timeSinceCreation = Math.round(
+      (Date.now() - new Date(result.lastComment.createdAt)) / 1000 / 60
+    );
+    const article = document.createElement('article');
+    article.classList.add('media');
+    article.innerHTML = `
+    <figure class="media-left">
+      <p class="image is-64x64">
+        <img src="https://bulma.io/images/placeholders/128x128.png">
+      </p>
+    </figure>
+    <div class="media-content">
+      <div class="content">
+        <p>
+          <strong>${result.lastComment.author.username}</strong>
+          <br>
+          ${result.lastComment.content}
+          <br>
+          <small><a>Like</a> · <a>Reply</a> · ${timeSinceCreation} min</small>
+        </p>
+      </div>
+    </div>
+    `;
+    const commentArea = document.querySelector('.comment-area');
+    commentArea.before(article);
   }
 });
 
@@ -80,14 +107,16 @@ if (!showRate?.innerText) {
         ratingApplied.removeAttribute('hidden');
         ratingApplied.innerHTML = '<b>Успешно!</b><br>Ваша оценка сохранена';
 
-        setTimeout(() => ratingApplied.toggleAttribute('hidden'), 3000);
+        setTimeout(() => {
+          ratingApplied.toggleAttribute('hidden');
+          window.location.reload();
+        }, 1500);
       }
     }
   });
 }
 
-// const oneInput = allInput.some((el) => el === showRate.innerText);
-
+// правка уже поставленной оценки
 if (showRate?.innerText) {
   for (let i = 0; i < allInput.length; i += 1) {
     if (allInput[i].value === showRate.innerText) {
@@ -118,8 +147,11 @@ if (showRate?.innerText) {
         ratingApplied.removeAttribute('hidden');
         ratingApplied.innerHTML = '<b>Успешно!</b><br>Ваша оценка сохранена';
 
-        setTimeout(() => ratingApplied.toggleAttribute('hidden'), 3000);
+        setTimeout(() => ratingApplied.toggleAttribute('hidden'), 1500);
       }
     }
   });
 }
+
+const scroll = document.querySelector('.scrolling-col');
+scroll.scrollTop = 9999;

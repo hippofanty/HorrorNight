@@ -22,7 +22,6 @@ const userSchema = mongoose.Schema({
   trackedFilms: [
     {
       type: String,
-      unique: true,
     },
   ],
 });

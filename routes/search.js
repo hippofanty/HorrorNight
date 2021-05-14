@@ -16,8 +16,6 @@ router.get('/', async (req, res) => {
     || movie.genre_ids.includes(9648),
   );
 
-  // console.log(movieIds);
-
   res.render('films/searched', { movieIds });
 });
 

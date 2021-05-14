@@ -2,11 +2,10 @@
 <div class="container">
   <div class="columns">
     <div class="column is-2">
-      {{!-- <p class="menu-label">Tracker</p> --}}
       <ul class="menu-list">
-        <li><a class="is-active" href="/profile/watchlist">Watchlist</a></li>
-        <li><a href="/profile/ratings">Ratings</a></li>
-        <li><a>Other</a></li>
+        <li><a href="/profile/">Профиль</a></li>
+        <li><a class="is-active" href="/profile/watchlist">Список отслеживания</a></li>
+        <li><a href="/profile/ratings">Рейтинги</a></li>
       </ul>
     </div>
 
@@ -33,7 +32,6 @@
                 {{else}}
                 <p class="card-overview">Описание отсутствует</p>
                 {{/if}}
-                <button class="button is-white"><a href="">Ваш рейтинг</a></button>
                 <button class="button is-white del-btn">
                   <span class="del-btn">Удалить</span>
                   <span class="icon is-small del-btn">
@@ -47,43 +45,5 @@
       </div>
       {{/each}}
     </div>
-
   </div> 
 </div>
-
-
-{{!-- <div class="container is-flex is-flex-direction-row is-flex-wrap-wrap is-justify-content-center">
-
-<div class="column is-three-quarters">
-  <h1 class="title">My Watchlist</h1>
-</div>
-
-{{#each trackedFilms}}
-<div class="column is-full">
-  <div class="card searched-cards profile-card is-flex is-flex-direction-row">
-    {{#if this.poster_path}}
-      <img class="searched-img" src="https://www.themoviedb.org/t/p/w150_and_h225_bestv2/{{this.poster_path}}">
-    {{else}}
-    <div class="no-image"></div>
-    {{/if}}
-    <div class="card-content is-flex is-align-content-center is-flex-direction-row is-flex-wrap-wrap">
-      <div class="content">
-        <div class="card-wrapper">
-          <p class="title is-5"><a href="/films/{{this.id}}">{{this.title}}</a></p>
-          <p class="release_date searched-date">{{this.release_date}}</p>
-        </div>
-      </div>
-      <div class="content">
-        <div class="overview">
-          {{#if this.overview}}
-          <p class="card-overview">{{this.overview}}</p>
-          {{else}}
-          <p class="card-overview">Описание отсутствует</p>
-          {{/if}}
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-{{/each}}
-</div> --}}

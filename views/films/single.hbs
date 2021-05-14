@@ -75,13 +75,12 @@
       </div>
     </div>
   </div>
-  <div class="show-tooltip" hidden></div>
 </section>
 
 {{#if username}}
 <div class="container">
   <section class="section is-flex is-justify-content-center is-flex-wrap-wrap">
-    <div class="column is-half">
+    <div class="column is-half scrolling-col">
       
       {{#each commentsByFilm}}
       <article class="media">
@@ -104,7 +103,7 @@
       </article>
       {{/each}}
 
-      <article class="media">
+      <article class="media comment-area">
         <form class="is-flex is-flex-direction-row" id="commentForm" method="POST" action="/films/comment/">
           <figure class="media-left">
             <p class="image is-64x64">
@@ -138,3 +137,5 @@
   </div>
   <button class="modal-close is-large" aria-label="close"></button>
 </div>
+
+<div class="show-tooltip" hidden></div>
